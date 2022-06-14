@@ -1,25 +1,20 @@
 import logo from './logo.svg';
 import './App.css';
-import Tester from '../Tester/Tester';
+import Search from '../Search/Search';
+//import firebase from 'firebase/app';
+//import 'firebase/database'; 
+//import { initializeApp } from 'firebase/app';
+
+
+//import {DB_CONFIG} from '../../Config/Firebase/db_config';
 
 function App() {
+  //this.app = firebase.initializeApp(DB_CONFIG);
+  //this.database = this.app.database().ref().child('flashcards');
   return (
+    
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-      <Tester/>
+      <Search/>
     </div>
   );
 }
