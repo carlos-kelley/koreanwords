@@ -6,10 +6,13 @@ import React, {
 function Search(props) {
   const [value, setValue] = useState("");
   const [result, setResult] = useState([]);
+  const [isPending, setIsPending] =
+    useState(false);
 
   useEffect(() => {
     console.log("inside useEffect");
     if (value.length > 0) {
+      setIsPending(true);
       console.log("inside useEffect if");
       fetch(
         "https://flashcards-543c9-default-rtdb.firebaseio.com/korean_database.json"
@@ -37,6 +40,7 @@ function Search(props) {
                 ];
               });
             }
+            setIsPending(false);
           }
         })
         .catch((error) => {
@@ -51,7 +55,7 @@ function Search(props) {
     <div>
       <p>Word Search</p>
       <input
-        type="text"
+        type="text" placeholder="Word"
         onChange={(event) =>
           setValue(event.target.value)
         }
@@ -59,8 +63,14 @@ function Search(props) {
       />
       <div>
         <div>
+          {isPending && <p>Loading...</p>}
+        </div>
+        <div>
           {result.map((result, index) => (
-            <a href="#" key={index}>
+            <a
+              href={`https://en.wiktionary.org/wiki/${value}`}
+              key={index}
+            >
               <div>{result}</div>
             </a>
           ))}
